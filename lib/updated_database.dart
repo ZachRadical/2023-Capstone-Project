@@ -1,7 +1,7 @@
 final Map<String, String> displayedResponse = {
   "charging": "USB Type C. 25W wired, 15W wireless, 4.5W reverse wireless",
   "processor": "Snapdragon 8 Gen 2",
-  "water resistance": "Yes, IPX8 water resistant up to 1.5m for 30 minutes",
+  "water": "Yes, IPX8 water resistant up to 1.5m for 30 minutes",
   "dimensions":
       "Unfolded: 154.9mm x 129.9mm x 6.1mm, Folded: 154.9mm x 67.1mm x 13.4mm",
   "color": "Icy Blue, Phantom Black, Cream, Gray, Blue",
@@ -26,7 +26,7 @@ final Map<String, String> displayedResponse = {
 };
 
 final Map<String, String> spokenResponse = {
-  "charging":
+  "charg":
       "USB Type C. 25 watt wired, 15 watt wireless, 4.5 watt reverse wireless",
   "processor": "Snapdragon 8 Gen 2",
   "water resistance":

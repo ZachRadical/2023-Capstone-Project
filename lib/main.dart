@@ -121,27 +121,29 @@ class MyHomePageState extends State<MyHomePage> {
   void _displayAnswer(String recognizedSpeech) {
     // Implementing logic to find an answer based on a keyword in the recognized speech
 
-    String foundAnswer = "Answer not found"; //Default value
-    String foundDisplayAnswer = "Answer not found"; //Default value
+    List<String> foundAnswers = []; //Default value
+    List<String> foundDisplayAnswers = []; //Default value
+
     //The spoken database removes acronyms from the bot's speech patterns, this way it will
     //display things like "mp" but the bot will still say "megapixel"
     phone_specs.spokenResponse.forEach((question, answer) {
       if (recognizedSpeech.toLowerCase().contains(question.toLowerCase())) {
-        foundAnswer = answer;
+        foundAnswers.add(answer);
         return;
       }
     });
 
     phone_specs.displayedResponse.forEach((question, answer) {
       if (recognizedSpeech.toLowerCase().contains(question.toLowerCase())) {
-        foundDisplayAnswer = answer;
+        foundDisplayAnswers.add(answer);
         return;
       }
     });
 
     setState(() {
-      _displayedAnswer = foundDisplayAnswer; // Set the displayed answer
-      _spokenAnswer = foundAnswer; // Set the answer to be spoken
+      _displayedAnswer =
+          foundDisplayAnswers.join('\n'); // Set the displayed answer
+      _spokenAnswer = foundAnswers.join('\n'); // Set the answer to be spoken
     });
 
     _speak(_spokenAnswer); // Speak the found answer
