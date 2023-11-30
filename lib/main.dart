@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -155,113 +156,154 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //Background image
       body: Container(
+        alignment: Alignment.center,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background.jpg"),
-            fit: BoxFit.cover,
+            image: AssetImage("assets/Galaxy-Z-Fold-5-renders-2.jpg"),
+            fit: BoxFit.fill,
           ),
         ),
+
+        //Column outline
         child: Container(
-          margin: const EdgeInsets.all(50),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          /*decoration: BoxDecoration(border: Border.all(color: Colors.black)),*/
+          height: 300,
+          width: 1100,
+          margin:
+              const EdgeInsets.only(bottom: 50, left: 50, right: 50, top: 160),
+
+          //Main column
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              //Title Frame
               Container(
-                height: 700,
-                width: 600,
-                margin: EdgeInsets.zero,
-                padding: EdgeInsets.zero,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.amber,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/zfold5.png", fit: BoxFit.contain),
-                    Container(
-                      margin: const EdgeInsets.only(top: 25),
-                      child: const Text('Samsung Galaxy Z Fold 5'),
-                    ),
-                  ],
+                alignment: Alignment.center,
+
+                //Still not entirely sure what this does
+                child: BackdropFilter(
+                  filter: ui.ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+
+                  //Title
+                  child: Text(
+                    "Samsung Galaxy Z Fold 5",
+                    style: TextStyle(
+                        fontSize: 56,
+                        //Adds color gradient to title text
+                        foreground: Paint()
+                          ..shader = ui.Gradient.linear(
+                            const Offset(0, 20),
+                            const Offset(7, 0),
+                            <Color>[
+                              Colors.lightBlue,
+                              Colors.lightBlueAccent,
+                            ],
+                          ),
+
+                        //Shadows creates the white border effect on the title
+                        //May scrap this
+                        shadows: const [
+                          Shadow(
+                              // bottomLeft
+                              offset: Offset(-1.0, -1.0),
+                              color: Colors.white),
+                          Shadow(
+                              // bottomRight
+                              offset: Offset(1.0, -1.0),
+                              color: Colors.white),
+                          Shadow(
+                              // topRight
+                              offset: Offset(1.0, 1.0),
+                              color: Colors.white),
+                          Shadow(
+                              // topLeft
+                              offset: Offset(-1.0, 1.0),
+                              color: Colors.white),
+                        ]),
+                  ),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: _toggleListening,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              _isListening ? Colors.red : Colors.amber,
-                        ),
-                        child: Text(
-                          _isListening ? 'Stop Listening' : 'Start Listening',
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Recognized Speech:',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Text(
-                                  _recognizedSpeech,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+
+              //Frame to hold row
+              SizedBox(
+                height: 100,
+                //Row for input, button, and output
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    //Text input box
+                    Container(
+                        width: 475,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.6),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 0), // changes position of shadow
                             ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Displayed Answer:',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Text(
-                                  _displayedAnswer,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                          ],
+                        ),
+
+                        //Input text
+                        //Center keeps the text vertically centered
+                        //TextAlign.Center keeps it horizontally centered
+                        child: Center(
+                          child: Text(_recognizedSpeech,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 24)),
+                        )),
+
+                    //Frame for button
+                    SizedBox(
+                      width: 100,
+
+                      //Button to toggle listening
+                      child: ElevatedButton(
+                          onPressed: _toggleListening,
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              elevation: 60.0,
+                              shadowColor: Colors.black,
+                              side: const BorderSide(color: Colors.black),
+                              backgroundColor: _isListening
+                                  ? Colors.red
+                                  : Colors.lightBlueAccent),
+                          child: const Icon(Icons.mic)),
+                    ),
+
+                    //Frame for output text box
+                    Container(
+                        width: 475,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withOpacity(0.6),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 0), // changes position of shadow
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        ),
+
+                        //Output text
+                        child: Center(
+                            child: Text(
+                          _displayedAnswer,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 24),
+                        )))
+                  ],
                 ),
               ),
             ],

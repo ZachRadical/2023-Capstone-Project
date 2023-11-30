@@ -49,7 +49,7 @@ final Map<String, String> spokenResponse = {
   "camera":
       "Main Camera: 50 megapixel wide angle, 10 megapixel telephoto, 12 megapixel ultrawide. Selfie Camera: 4 megapixel wide angle, 10 megapixel wide angle",
   "release": "August 11, 2023",
-  "display": "7.6 inch foldable AMOLED 120 hertz display",
+  "display": "7.6 inch foldable ammo el ee dee 120 hertz display",
   "ram": "12 gigabytes of RAM",
   "1 TB": "\$2160, \$360 more than the base model"
 };
