@@ -147,7 +147,8 @@ class MyHomePageState extends State<MyHomePage> {
       _spokenAnswer = foundAnswers.join('\n'); // Set the answer to be spoken
     });
 
-    _speak(_spokenAnswer); // Speak the found answer
+    _speak(_spokenAnswer);
+    print(foundDisplayAnswers); // Speak the found answer
   }
 
 //*************************************************
@@ -196,11 +197,8 @@ class MyHomePageState extends State<MyHomePage> {
                         foreground: Paint()
                           ..shader = ui.Gradient.linear(
                             const Offset(0, 20),
-                            const Offset(7, 0),
-                            <Color>[
-                              Colors.lightBlue,
-                              Colors.lightBlueAccent,
-                            ],
+                            const Offset(8.5, 0),
+                            <Color>[Colors.amber, Colors.lightBlueAccent],
                           ),
 
                         //Shadows creates the white border effect on the title
