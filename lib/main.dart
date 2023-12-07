@@ -256,7 +256,7 @@ class MyHomePageState extends State<MyHomePage> {
                           child: Text(_recognizedSpeech,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
+                                  fontWeight: FontWeight.bold, fontSize: 18)),
                         )),
 
                     //Frame for button
@@ -299,11 +299,15 @@ class MyHomePageState extends State<MyHomePage> {
                           _displayedAnswer,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         )))
                   ],
                 ),
               ),
+              const Text(
+                  "Data was gathered from https://www.gsmarena.com/samsung_galaxy_z_fold5-12418.php",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white60)),
             ],
           ),
         ),
